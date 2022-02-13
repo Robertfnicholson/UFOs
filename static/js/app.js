@@ -1,5 +1,5 @@
 // from data.js - import the data from data.js
-// Comments are taken predominantly from Module 11
+// Some comments are referenced from Module 11
 const tableData = data;
 
 // get table references - Reference the HTML table using d3
@@ -25,80 +25,65 @@ function buildTable(data) {
   });
 }
 
-// Start a new function. We'll name this one "handleClick" because it will be handling what to do after an input
-// is given, such as filtering the table by date.
-function handleClick() {
-   // Grab the datetime value from the filter
-    let date = d3.select("#datetime").property("value");
-    let filteredData = tableData;
-
-    // Add an if statement that checks for a date. If one is present, we want it to return only the data with that date.
-    if (date) {
-    // Apply `filter` to the table data to only keep the
-    // rows where the `datetime` value matches the filter value
-        filteredData = filteredData.filter(row => row.datetime === date);
-  }
-
-    // Rebuild the table using the filtered data
-    // @NOTE: If no date was entered, then filteredData will
-    // just be the original tableData.
-    buildTable(filteredData);
-}
-
-// Listen for an event - Another aspect of D3.js is that it can listen for events that occur on a webpage,
-// such as a button click. The below code ill be tied to the filter button we'll build on our webpage.
-d3.selectAll("#filter-btn").on("click", handleClick);
-
-// Build the table when the page loads
-buildTable(tableData);
-
 // 1. Create a variable to keep track of all the filters as an object.
-//var filters = {}
+var filters = {}
 
 // 3. Use this function to update the filters. 
-// function updateFilters() {
+function updateFilters() {
 
     // 4a. Save the element that was changed as a variable.
-    // Referenced code from Devin Greenzang's "app.js" file in GitHub for syntax error correction.
-    //let changedElement = d3.select(this)
+    // Reference code provided in Module 11 Challenge Video Hint
+    let changedElement = d3.select(this);
 
     // 4b. Save the value that was changed as a variable.
-    //let elementValue = changedElement.property("value")
-    //console.log(elementValue)
+    // Reference code provided in Module 11 Challenge Video Hint
+    let elementValue = changedElement.property("value");
+    console.log(elementValue)
 
     // 4c. Save the id of the filter that was changed as a variable.
-    //let filterId = changedElement.attr("id")
-  
+    // Reference code provided in Module 11 Challenge Video Hint
+    let filterId = changedElement.attr("id");
+    console.log(filterId);
+
     // 5. If a filter value was entered then add that filterId and value
     // to the filters list. Otherwise, clear that filter from the filters object.
-    //if (elementValue) {
-      //  filters[filterId] = elementValue;
-    //}
-    //else {
-      //  delete filters[filterId]
+    // Reference code provided in Module 11 Challenge Video Hint
+    if (elementValue) {
+        filters[filterId] = elementValue;
+    }
+    else {
+        delete filters[filterId];
+    }
 
-  
     // 6. Call function to apply all filters and rebuild the table
-//    filterTable();
+    // Reference code provided in Module 11 Challenge Video Hint
+    filterTable();
   
-//  }
+  }
   
   // 7. Use this function to filter the table when data is entered.
-//  function filterTable() {
+  function filterTable() {
   
     // 8. Set the filtered data to the tableData.
-    
+    // Referenced code by Devin Greenzang: "app.js" file on GitHub
+    var filteredData = tableData;
+
   
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
-    
+    // Referenced code by Devin Greenzang: "app.js" file on GitHub
+    Object.entries(filters).forEach(([key, value]) => {
+      filteredData = filteredData.filter(row => row[key] === value);
+    });
   
     // 10. Finally, rebuild the table using the filtered data
-    
+    buildTable(filteredData);
+  }
   
-  
-  // 2. Attach an event to listen for changes to each filter
-  
+  // 2. Attach an event to listen for changes to each filter.
+  // Another aspect of D3.js is that it can listen for events that occur on a webpage,
+  // Reference code provided in Module 11 Challenge Video Hint
+  d3.selectAll("input").on("change", updateFilters);
   
   // Build the table when the page loads
-//  buildTable(tableData);
+  buildTable(tableData);

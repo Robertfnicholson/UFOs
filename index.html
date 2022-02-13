@@ -40,18 +40,27 @@
       <div class="col-md-3">
         <form class="bg-dark">
           <p>Filter Search</p>
-          <ul class="bg-dark">
-            <li class="bg-dark">
+          <ul class="list-group bg-dark">
+            <li class="list-group-item bg-dark">
               <label for="date">Enter Date</label><br>
               <input type="text" placeholder="1/10/2010" id="datetime" />
             </li><br>
-            <li class="bg-dark">
+            <li class="list-group-item bg-dark">
               <label for="city">Enter City</label><br>
-              <input type="text" placeholder="roswell" id="city" />        
-            </li><br>            
-            <li class="bg-dark">
-              <button id="filter-btn" type="button" class="btn-dark">Filter Table</button>
-            </li>
+              <input type="text" class="form-control" placeholder="roswell" id="city" />        
+            </li><br>     
+            <li class="list-group-item bg-dark">
+              <label for="state">Enter State</label><br>
+              <input type="text" class="form-control" placeholder="ca" id="state" />        
+            </li><br>
+            <li class="list-group-item bg-dark">
+              <label for="country">Enter Country</label><br>
+              <input type="text" class="form-control" placeholder="us" id="country" />        
+            </li><br>
+            <li class="list-group-item bg-dark">
+              <label for="shape">Enter Shape</label><br>
+              <input type="text" placeholder="circle" id="shape" />        
+            </li><br>       
           </ul>
         </form>  
         <ul class="list-group">
@@ -62,15 +71,13 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>
                 <th>Date</th>
                 <th>City</th>
                 <th>State</th>
                 <th>Country</th>
                 <th>Shape</th>
                 <th>Duration</th>
-                <th>Comments</th>
-              </th>
+                <th>Comments</th>  
             </tr>
           </thead>
           <tbody></tbody>
